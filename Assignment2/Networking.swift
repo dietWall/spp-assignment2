@@ -68,20 +68,24 @@ class Networking {
             
         print("Fetching Flag Image from : " + (url.absoluteString))
 
-        let flagSession = URLSession(configuration: .default)
-
-        flagSession.dataTask(with: url, completionHandler: { data, response, error in
-
-            if let response = response as? HTTPURLResponse,
-                response.statusCode == 200{
-                if(data != nil){
-                    //data wurde geprüft => data!
-                    if let img = UIImage(data: data!){
-                       completion(img)
+            DispatchQueue.global(qos: .userInitiated).async {
+            
+                let flagSession = URLSession(configuration: .default)
+                flagSession.dataTask(with: url, completionHandler: { data, response, error in
+                    
+                    if let response = response as? HTTPURLResponse,
+                        response.statusCode == 200{
+                        if(data != nil){
+                            //data wurde geprüft => data!
+                            if let img = UIImage(data: data!){
+                                completion(img)
+                            }
+                        }
                     }
-                }
+                }).resume()
+                
             }
-        }).resume()
+        
        }
     }
     
