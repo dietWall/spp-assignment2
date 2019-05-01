@@ -40,7 +40,6 @@ class VatRatesViewController: UITableViewController {
     
     func setData(data: Array<SingleRate>) -> Void
     {
-        print("VC: data set : \(data.count)")
         rates = data
     }
     
@@ -55,7 +54,6 @@ class VatRatesViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
@@ -65,25 +63,18 @@ class VatRatesViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       
-        print("Set Data in Row: \(indexPath.row)")
-        
         //Beim ersten Durchlauf werden erstmal nur die Namen gesetzt
         let cell = tableView.dequeueReusableCell(withIdentifier: "BasicCell", for: indexPath)
         cell.textLabel?.text = rates[indexPath.row].name
         
         //Später ist dieses Array auch befüllt und die Flaggen werden auch angezeigt
         if flags[rates[indexPath.row].country_code] != nil{
-            print("Set Image at \(indexPath.row)")
             cell.imageView?.image = flags[rates[indexPath.row].country_code]
         }
-        
         return cell
     }
     
-    
     func reload(){
-        print("reload")
         DispatchQueue.main.async { [weak self] in
             self?.tableView.reloadData()
         }
@@ -95,18 +86,12 @@ class VatRatesViewController: UITableViewController {
         
         // Get the new view controller using segue.destination.
         if segue.identifier == "TouchedSomeField"{
-            if let nav = segue.destination as? UINavigationController{
-                print(nav)
                 if let dest = segue.destination.children[0] as? CalculatorViewController{
-                    print("dest gefunden: \(dest)")
                     if let def=sender as? UITableViewCell{
                         let rate = rates.filter( {$0.name == def.textLabel?.text})[0]
                         dest.rates = rate
                         dest.flagPicture = flags[rate.country_code]
-                        print("Sender: UI Cell: \(String(describing: dest.rates))")
                     }
-                }
-                
             }else{
                 print("segue:dest \(segue.destination)")
             }
