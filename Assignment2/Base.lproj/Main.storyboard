@@ -125,7 +125,7 @@
                     <navigationItem key="navigationItem" id="FEA-No-9EG">
                         <barButtonItem key="leftBarButtonItem" systemItem="done" id="IfN-L5-Pdc">
                             <connections>
-                                <segue destination="mcE-GE-CL2" kind="unwind" unwindAction="unwindToVatRatesViewControllerWithSender:" id="dyt-yq-XFx"/>
+                                <action selector="exit:" destination="67l-Aa-OKL" id="tIP-4d-yyl"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -137,7 +137,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S8g-qc-0ft" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="mcE-GE-CL2" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4507.2463768115949" y="26.785714285714285"/>
         </scene>

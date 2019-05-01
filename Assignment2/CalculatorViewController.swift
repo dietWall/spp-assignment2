@@ -55,12 +55,8 @@ class CalculatorViewController: UIViewController{
         navigationItem.title = rates?.name
     }
     
-
-
-    //Exit from View
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-        print("prepare for return segue")
-    }
     
+    @IBAction func exit(_ sender: UIBarButtonItem) {
+        presentingViewController?.dismiss(animated: true, completion: {})
+    }
 }

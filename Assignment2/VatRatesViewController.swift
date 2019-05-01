@@ -112,12 +112,6 @@ class VatRatesViewController: UITableViewController {
             }
         }
         
-        // Pass the selected object to the new view controller.
     }
-    
-    @IBAction func unwindToVatRatesViewController(sender: UIStoryboardSegue){
-        print("VATRatesView: unwind")
-    }
- 
     
 }
